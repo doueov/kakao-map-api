@@ -1,0 +1,429 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+.badge {
+  display: inline-block !important;
+  font-size: 0.7rem;
+  padding: 0 2px;
+  border-radius: 5px;
+  background: #eee;
+  color: grey;
+}
+#map {
+  width: 100vw;
+  height: 100vh;
+}
+.wrap {
+  position: relative;
+}
+.menu {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+.menu .box {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  /* background-color: white; */
+  z-index: 2;
+  overflow-y: auto;
+  transition: all 0.5s;
+}
+
+/* 검색결과 창 스크롤바 크기 및 색상 변경 */
+.menu .box::-webkit-scrollbar {
+  width: 3px; /*스크롤바의 너비*/
+}
+.menu .box::-webkit-scrollbar-thumb {
+  background-color: black; /*스크롤바의 색상*/
+}
+.menu .box::-webkit-scrollbar-track {
+  background-color: yellowgreen; /*스크롤바 트랙 색상*/
+}
+
+.menu .box.show {
+  width: 300px;
+  height: calc(100vh - 10px);
+  background: rgba(0, 0, 0, 0.5);
+}
+.menu .menu_toggle {
+  position: absolute;
+  transform: rotate(-90deg) scale(1.5);
+  transition: all 0.5s;
+  cursor: pointer;
+  z-index: 3;
+}
+.menu_toggle.show {
+  transform: rotate(0deg) scale(1.5);
+}
+.menu .box .boxWrap.hidden {
+  display: none;
+}
+
+.infoWindow {
+  padding: 10px;
+}
+
+.addr {
+  position: absolute;
+  top: 5px;
+  left: 35px;
+  width: 250px;
+  height: 25px;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+  font-size: 0.8rem;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hrStyle {
+  margin: 10px;
+  border: none;
+  border-top: 1px solid #fff;
+}
+.hrStyle:last-child {
+  display: none;
+}
+
+/* 폴리곤 */
+.polygon {
+  margin-top: 50px;
+}
+.polygon div {
+  margin-top: -20px;
+  margin-left: 75px;
+  margin-bottom: 10px;
+  color: white;
+  font-size: 0.8rem;
+}
+
+/* 개발행위허가필지 표시 */
+.cityPlan div {
+  margin-top: -20px;
+  margin-left: 75px;
+  margin-bottom: 10px;
+  color: white;
+  font-size: 0.8rem;
+}
+
+/* 주요상권 */
+.industry div {
+  margin-top: -20px;
+  margin-left: 75px;
+  margin-bottom: 10px;
+  color: white;
+  font-size: 0.8rem;
+}
+
+/* 체육 */
+.athletic div {
+  margin-top: -20px;
+  margin-left: 75px;
+  margin-bottom: 10px;
+  color: white;
+  font-size: 0.8rem;
+}
+
+/* 지도 타입 */
+.mapType {
+  display: inline-block;
+}
+.mapType div {
+  margin-top: -18px;
+  margin-left: 75px;
+  color: white;
+  font-size: 0.8rem;
+}
+/* category */
+.category {
+  display: inline-block;
+}
+.polygon label,
+.cityPlan label,
+.industry label,
+.athletic label,
+.mapType label,
+.category label,
+.search label {
+  color: white;
+  margin: 10px;
+  font-size: 0.8rem;
+}
+.polygon div > label,
+.cityPlan div > label,
+.industry div > label,
+.athletic div > label,
+.mapType div > label {
+  margin: 0;
+  position: relative;
+  top: -1.5px;
+}
+
+.category #categorySelect {
+  padding: 5px;
+  border-radius: 10px;
+  outline: none;
+}
+
+/* location */
+.mylocation {
+  display: inline-block;
+  margin-left: 30px;
+}
+.mylocation i {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);
+    -moz-box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(204, 49, 44, 0);
+    -moz-box-shadow: 0 0 0 20px rgba(204, 49, 44, 0);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(204, 49, 44, 0);
+    -moz-box-shadow: 0 0 0 20px rgba(204, 49, 44, 0);
+  }
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);
+    -moz-box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(204, 49, 44, 0);
+    -moz-box-shadow: 0 0 0 20px rgba(204, 49, 44, 0);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(204, 49, 44, 0);
+    -moz-box-shadow: 0 0 0 20px rgba(204, 49, 44, 0);
+  }
+}
+
+/* 현재위치 포인터 애니메이션효과 */
+img[title='현재위치'] {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 0 rgb(255, 0, 0);
+  clip: rect(-30px, 40px, 40px, -30px) !important;
+  animation: pulse 1.7s infinite;
+}
+
+/* 키워드 검색 */
+.search {
+  margin-top: 1rem;
+}
+.search label {
+  letter-spacing: 1.5rem;
+}
+input#search {
+  padding: 7px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  margin-left: -1.4rem;
+  font-size: 0.8rem;
+}
+.searchdata {
+  margin: 20px auto;
+  width: 95%;
+  height: 50vh;
+  background: rgba(255, 255, 255, 0.7);
+  overflow-y: auto;
+  color: black;
+  font-size: 0.8rem;
+  font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+}
+
+/* 검색결과 창 스크롤바 크기 및 색상 변경 */
+.searchdata::-webkit-scrollbar {
+  width: 3px; /*스크롤바의 너비*/
+}
+.searchdata::-webkit-scrollbar-thumb {
+  background-color: black; /*스크롤바의 색상*/
+}
+.searchdata::-webkit-scrollbar-track {
+  background-color: yellowgreen; /*스크롤바 트랙 색상*/
+}
+
+.searchdata.show {
+  display: block;
+}
+.searchdata.hidden {
+  display: none;
+}
+.searchdata li {
+  list-style: none;
+}
+.searchdata .item {
+  position: relative;
+  border-bottom: 1px solid #888;
+  overflow: hidden;
+  cursor: pointer;
+  min-height: 65px;
+}
+.searchdata .item span.jibun {
+  display: block;
+  margin-top: 4px;
+}
+.searchdata .item h4,
+.searchdata .item .info {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.searchdata .item .info {
+  padding: 10px;
+}
+.searchdata .info .gray {
+  color: #8a8a8a;
+}
+/* .searchdata .info .jibun {
+  padding-left: 26px;
+} */
+.searchdata .info .tel {
+  color: #009900;
+}
+
+/* 커스텀오버레이 */
+.custom_overlay_wrap {
+  position: absolute;
+  left: 0;
+  bottom: 40px;
+  width: 288px;
+  height: 132px;
+  margin-left: -144px;
+  text-align: left;
+  overflow: hidden;
+  font-size: 12px;
+  font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+  line-height: 1.5;
+}
+.custom_overlay_wrap * {
+  padding: 0;
+  margin: 0;
+}
+.custom_overlay_wrap .custom_overlay {
+  width: 286px;
+  height: 120px;
+  border-radius: 5px;
+  border-bottom: 2px solid #ccc;
+  border-right: 1px solid #ccc;
+  overflow: hidden;
+  background: #fff;
+}
+.custom_overlay_wrap .custom_overlay:nth-child(1) {
+  border: 0;
+  box-shadow: 0px 1px 2px #888;
+}
+.custom_overlay .title {
+  padding: 5px 0 0 10px;
+  height: 30px;
+  background: #eee;
+  border-bottom: 1px solid #ddd;
+  font-size: 18px;
+  font-weight: bold;
+}
+.custom_overlay .close {
+  position: absolute;
+  top: 3px;
+  right: 10px;
+  color: #888;
+  width: 17px;
+  height: 17px;
+}
+.custom_overlay .close:hover {
+  cursor: pointer;
+}
+.custom_overlay .body {
+  position: relative;
+  overflow: hidden;
+}
+.custom_overlay .desc {
+  position: relative;
+  margin: 13px 0 0 90px;
+  height: 75px;
+}
+.desc .ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.desc .jibun {
+  font-size: 11px;
+  color: #888;
+  margin-top: -2px;
+}
+.custom_overlay .img {
+  position: absolute;
+  top: 6px;
+  left: 5px;
+  width: 73px;
+  height: 71px;
+  border: 1px solid #ddd;
+  color: #888;
+  overflow: hidden;
+}
+.custom_overlay:after {
+  content: '';
+  position: absolute;
+  margin-left: -12px;
+  left: 50%;
+  bottom: 0;
+  width: 22px;
+  height: 12px;
+}
+.custom_overlay .link {
+  color: #5085bb;
+  text-decoration: none;
+}
+
+/* 토스트 */
+#toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  padding: 20px 20px;
+  transform: translate(-50%, -50%);
+  border-radius: 30px;
+  overflow: hidden;
+  font-size: 0.8rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s, transform 0.5s;
+  background: rgba(238, 34, 34, 0.8);
+  color: #fff;
+  z-index: 999;
+}
+
+#toast.reveal {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
